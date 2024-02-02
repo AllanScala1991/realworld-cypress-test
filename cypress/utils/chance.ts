@@ -13,6 +13,6 @@ export class ChanceService {
     }
 
     generateSentence(): string {
-        return this.chance.sentence({words: 1});
+        return this.chance.sentence({words: 2});
     }
 }
