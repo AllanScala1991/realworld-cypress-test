@@ -27,6 +27,7 @@
 import { CreateAccountModel } from "../models/account"
 import { ACCOUNT } from "../pageObjects/account"
 import { LOGIN } from "../pageObjects/login"
+import { HOME } from "../pageObjects/home"
 
 Cypress.Commands.add('createAccount', (user: CreateAccountModel) => {
     cy.visit("/signin")
@@ -63,10 +64,30 @@ Cypress.Commands.add('createAccount', (user: CreateAccountModel) => {
     .should("be.visible");
 })
 
+Cypress.Commands.add('login', (username: string, password: string) => {
+    cy.visit('/signin');
+
+    cy.get(LOGIN.INPUT_USERNAME)
+    .should("be.visible")
+    .type(username)
+
+    cy.get(LOGIN.INPUT_PASSWORD)
+    .should("be.visible")
+    .type(password)
+
+    cy.get(LOGIN.BTN_SIGN_IN)
+    .should("be.visible")
+    .click()
+
+    cy.get(HOME.BTN_HOME)
+    .should("be.visible")
+})
+
 declare global {
     namespace Cypress {
         interface Chainable {
             createAccount(user: CreateAccountModel): Chainable<void>
+            login(username: string, password: string): Chainable<void>
         }
     }
 }

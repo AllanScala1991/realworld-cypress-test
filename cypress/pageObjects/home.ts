@@ -1,3 +1,12 @@
 export enum HOME {
-    BTN_HOME = '[data-test="sidenav-home"]'
+    BTN_HOME = '[data-test="sidenav-home"]',
+    BTN_NEXT_MODAL_GET_STARTED = '[data-test="user-onboarding-next"]',
+    INPUT_BANK_NAME_MODAL = '#bankaccount-bankName-input',
+    INPUT_ROUTING_NUMBER_MODAL = '#bankaccount-routingNumber-input',
+    INPUT_ACCOUNT_NUMBER_MODAL = '#bankaccount-accountNumber-input',
+    BTN_SAVE_MODAL = '[data-test="bankaccount-submit"]',
+    ERROR_MSG_INPUT_BANK_NAME_MODAL = '#bankaccount-bankName-input-helper-text',
+    ERROR_MSG_INPUT_ROUTING_NUMBER_MODAL = '#bankaccount-routingNumber-input-helper-text',
+    ERROR_MSG_INPUT_ACCOUNT_NUMBER_MODAL = '#bankaccount-accountNumber-input-helper-text',
+    MODAL_FINISH_ACCOUNT_BANK_CREATED_MSG = '[data-test="user-onboarding-dialog-title"]'
 }
