@@ -1,29 +1,5 @@
 /// <reference types="cypress" />
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+
 import { CreateAccountModel } from "../models/account"
 import { ACCOUNT } from "../pageObjects/account"
 import { LOGIN } from "../pageObjects/login"
@@ -83,11 +59,34 @@ Cypress.Commands.add('login', (username: string, password: string) => {
     .should("be.visible")
 })
 
+Cypress.Commands.add('createBankAccount', (bankName: string, routingNumber: string, accountNumber: string) => {
+    cy.get(HOME.INPUT_BANK_NAME_MODAL)
+    .should("be.visible")
+    .type(bankName)
+
+    cy.get(HOME.INPUT_ROUTING_NUMBER_MODAL)
+    .should("be.visible")
+    .type(routingNumber)
+
+    cy.get(HOME.INPUT_ACCOUNT_NUMBER_MODAL)
+    .should("be.visible")
+    .type(accountNumber)
+
+    cy.get(HOME.BTN_SAVE_MODAL)
+    .should("be.visible")
+    .click()
+
+    cy.get(HOME.BTN_DONE_MODAL)
+    .should("be.visible")
+    .click()
+})
+
 declare global {
     namespace Cypress {
         interface Chainable {
             createAccount(user: CreateAccountModel): Chainable<void>
             login(username: string, password: string): Chainable<void>
+            createBankAccount(bankName: string, routingNumber: string, accountNumber: string)
         }
     }
 }
