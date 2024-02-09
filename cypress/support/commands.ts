@@ -4,6 +4,7 @@ import { CreateAccountModel } from "../models/account"
 import { ACCOUNT } from "../pageObjects/account"
 import { LOGIN } from "../pageObjects/login"
 import { HOME } from "../pageObjects/home"
+import { MY_ACCOUNT } from "../pageObjects/myAccount"
 
 Cypress.Commands.add('createAccount', (user: CreateAccountModel) => {
     cy.visit("/signin")
@@ -81,12 +82,27 @@ Cypress.Commands.add('createBankAccount', (bankName: string, routingNumber: stri
     .click()
 })
 
+Cypress.Commands.add('insertEmailAndPhoneInMyAccount', () => {
+    cy.get(MY_ACCOUNT.INPUT_EMAIL)
+    .should("be.visible")
+    .type("test@mail.com")
+
+    cy.get(MY_ACCOUNT.INPUT_PHONE)
+    .should("be.visible")
+    .type("41999999999")
+
+    cy.get(MY_ACCOUNT.BTN_SAVE)
+    .should("be.visible")
+    .click()
+})
+
 declare global {
     namespace Cypress {
         interface Chainable {
             createAccount(user: CreateAccountModel): Chainable<void>
             login(username: string, password: string): Chainable<void>
-            createBankAccount(bankName: string, routingNumber: string, accountNumber: string)
+            createBankAccount(bankName: string, routingNumber: string, accountNumber: string): Chainable<void>
+            insertEmailAndPhoneInMyAccount(): Chainable<void>
         }
     }
 }

@@ -24,7 +24,7 @@ describe("Create Bank Account Tests", () => {
     it("Create new bank account", () => {
         cy.get(HOME.INPUT_BANK_NAME_MODAL)
         .should("be.visible")
-        .type("Itau")
+        .type("Bradesco")
 
         cy.get(HOME.INPUT_ROUTING_NUMBER_MODAL)
         .should("be.visible")
