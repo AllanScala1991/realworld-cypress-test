@@ -126,7 +126,7 @@ describe("My Account Tests", () => {
         .and("have.text", "Enter a phone number")
     })
 
-    it.only("Insert invalid value in email and phone", () => {
+    it("Insert invalid value in email and phone", () => {
         cy.get(MY_ACCOUNT.INPUT_EMAIL)
         .should("be.visible")
         .type("invalid")
