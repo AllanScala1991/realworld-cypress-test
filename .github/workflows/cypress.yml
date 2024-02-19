@@ -1,0 +1,29 @@
+name: End to End Tests
+
+on:
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+      
+            - name: Setup Node.js
+              uses: actions/setup-node@v2
+              with:
+                node-version: 18
+      
+            - name: Install Dependencies
+              run: npm install -G yarn
+      
+            - name: Clone Project repository
+              run: git clone https://github.com/cypress-io/cypress-realworld-app
+      
+            - name: Install Project dependencies
+              run: cd cypress-realworld-app && npm i && yarn dev
+      
+            - name: Run Project
+              run: cd ../ && npm run cy:run
