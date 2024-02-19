@@ -23,7 +23,7 @@ jobs:
               run: git clone https://github.com/cypress-io/cypress-realworld-app
       
             - name: Install Project dependencies
-              run: cd cypress-realworld-app && npm install
+              run: cd cypress-realworld-app && npm install --force
 
             - name: Run Project
               run: yarn dev
