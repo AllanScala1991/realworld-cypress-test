@@ -11,5 +11,6 @@ export enum HOME {
     ERROR_MSG_INPUT_ACCOUNT_NUMBER_MODAL = '#bankaccount-accountNumber-input-helper-text',
     MODAL_FINISH_ACCOUNT_BANK_CREATED_MSG = '[data-test="user-onboarding-dialog-title"]',
     BTN_MY_ACCOUNT = '[data-test="sidenav-user-settings"]',
-    BTN_BANK_ACCOUNTS = '[data-test="sidenav-bankaccounts"]'
+    BTN_BANK_ACCOUNTS = '[data-test="sidenav-bankaccounts"]',
+    BTN_NEW_TRANSACTIONS = '[data-test="nav-top-new-transaction"]'
 }

@@ -5,6 +5,7 @@ import { ACCOUNT } from "../pageObjects/account"
 import { LOGIN } from "../pageObjects/login"
 import { HOME } from "../pageObjects/home"
 import { MY_ACCOUNT } from "../pageObjects/myAccount"
+import { ChanceService } from "../utils/chance"
 
 Cypress.Commands.add('createAccount', (user: CreateAccountModel) => {
     cy.visit("/signin")
@@ -96,6 +97,25 @@ Cypress.Commands.add('insertEmailAndPhoneInMyAccount', () => {
     .click()
 })
 
+Cypress.Commands.add('accessHome', () => {
+    const user = {
+        name: new ChanceService().generateFullName().name,
+        lastname: new ChanceService().generateFullName().lastname,
+        username: new ChanceService().generateFullName().name,
+        password: new ChanceService().generateSentence()
+    }
+
+    cy.createAccount(user)
+
+    cy.login(user.username, user.password)
+
+    cy.get(HOME.BTN_NEXT_MODAL_GET_STARTED)
+    .should("be.visible")
+    .click()
+
+    cy.createBankAccount("Bradesco", "123456789", "123456789")
+})
+
 declare global {
     namespace Cypress {
         interface Chainable {
@@ -103,6 +123,7 @@ declare global {
             login(username: string, password: string): Chainable<void>
             createBankAccount(bankName: string, routingNumber: string, accountNumber: string): Chainable<void>
             insertEmailAndPhoneInMyAccount(): Chainable<void>
+            accessHome(): Chainable<void>
         }
     }
 }

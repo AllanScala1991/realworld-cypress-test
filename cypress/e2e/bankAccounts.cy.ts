@@ -5,22 +5,7 @@ import { ChanceService } from "../utils/chance"
 
 describe("Bank Accounts Tests", () => {
     beforeEach(() => {
-        const user = {
-            name: new ChanceService().generateFullName().name,
-            lastname: new ChanceService().generateFullName().lastname,
-            username: new ChanceService().generateFullName().name,
-            password: new ChanceService().generateSentence()
-        }
-
-        cy.createAccount(user)
-
-        cy.login(user.username, user.password)
-
-        cy.get(HOME.BTN_NEXT_MODAL_GET_STARTED)
-        .should("be.visible")
-        .click()
-
-        cy.createBankAccount("Bradesco", "123456789", "123456789")
+        cy.accessHome()
 
         cy.get(HOME.BTN_BANK_ACCOUNTS)
         .should("be.visible")
