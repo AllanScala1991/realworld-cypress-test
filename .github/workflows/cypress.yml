@@ -27,4 +27,4 @@ jobs:
 
       
             - name: Run Tests
-              run: cd ../ && npm run cy:run
+              run: cd ../../ && npm run cy:run
