@@ -15,6 +15,9 @@ jobs:
               uses: actions/setup-node@v2
               with:
                 node-version: 18
+
+            - name: Install Tests dependencies
+              run: npm install
       
             - name: Clone Project repository
               run: git clone https://github.com/cypress-io/cypress-realworld-app
@@ -22,8 +25,6 @@ jobs:
             - name: Install Project dependencies and Run
               run: cd cypress-realworld-app && npm install --force && npm run dev &
 
-            - name: Install Tests dependencies
-              run: cd ../ && npm install
       
             - name: Run Tests
-              run: npm run cy:run
+              run: cd ../ && npm run cy:run
