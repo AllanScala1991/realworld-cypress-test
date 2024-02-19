@@ -16,14 +16,11 @@ jobs:
               with:
                 node-version: 18
       
-            - name: Install Dependencies
-              run: npm install -G yarn
-      
             - name: Clone Project repository
               run: git clone https://github.com/cypress-io/cypress-realworld-app
       
-            - name: Install Project dependencies
-              run: cd cypress-realworld-app && npm install --force && yarn dev
+            - name: Install Project dependencies and Run
+              run: cd cypress-realworld-app && npm install --force && npm run dev &
       
             - name: Run Tests
               run: npm run cy:run
