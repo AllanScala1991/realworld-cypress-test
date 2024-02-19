@@ -21,6 +21,9 @@ jobs:
       
             - name: Install Project dependencies and Run
               run: cd cypress-realworld-app && npm install --force && npm run dev &
+
+            - name: Install Tests dependencies
+              run: cd ../ && npm install
       
             - name: Run Tests
-              run: cd ../ && npm run cy:run
+              run: npm run cy:run
